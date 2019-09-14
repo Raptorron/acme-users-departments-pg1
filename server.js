@@ -3,6 +3,8 @@ const app = express();
 const path = require('path');
 const db = require('./db');
 
+app.use(express.json());
+
 app.get('/', (req, res, next)=>{
   res.sendFile(path.join(__dirname, 'index.html'));
 });
