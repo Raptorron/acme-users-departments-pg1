@@ -41,7 +41,7 @@ INSERT INTO users(id, name, deparment_id) VALUES('${MoeId}', 'Moe', '${HRId}');
 INSERT INTO users(id, name, deparment_id) VALUES('${LarryId}', 'Larry', '${HRId}');
 INSERT INTO users(id, name, deparment_id) VALUES('${CurlyId}', 'Curly', '${SalesId}');
 INSERT INTO users(id, name, deparment_id) VALUES('${LucyId}', 'Lucy', '${ITId}');
-INSERT INTO users(id, name, deparment_id) VALUES('${ShepId}', 'Shep');
+INSERT INTO users(id, name, deparment_id) VALUES('${ShepId}', 'Shep', '${ITId}');
 `
 
 const syncAndSeed = async () => {
@@ -49,6 +49,19 @@ const syncAndSeed = async () => {
   console.log('success');
 };
 
+const findAllUsers = async() => {
+  const response = await client.query('SELECT * FROM users');
+  return response.rows;
+}
+
+const findAllDepartments = async() => {
+  const response = await client.query('SELECT * FROM departments');
+  return response.rows;
+}
+
+
 module.exports={
-  syncAndSeed
+  syncAndSeed,
+  findAllUsers,
+  findAllDepartments
 }
